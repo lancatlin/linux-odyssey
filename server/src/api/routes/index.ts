@@ -8,6 +8,8 @@ import authRequired from '../../middleware/authRequired.js'
 import userRouter from './userRouter.js'
 import config from '../../config.js'
 import leaderboardController from '../controllers/leaderboardController.js'
+import {getCheatSheet, errorReport} from '../controllers/cheatSheet.js'
+
 
 const router = Router()
 if (!config.isProduction) {
@@ -49,5 +51,9 @@ router.get('/bug-report', (req, res) => {
 })
 
 router.get('/leaderboard', leaderboardController)
+
+router.get('/getcheatsheet', getCheatSheet); 
+
+router.post('/errorReport', errorReport); 
 
 export default router
