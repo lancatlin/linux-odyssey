@@ -1,4 +1,5 @@
 import api from './api'
+import debouncing from './debouncing'
 
 import {
   TooManyRequestsError,
@@ -55,7 +56,7 @@ export const login = (username: string, password: string) => {
 
 export const register = (username: string, email: string, password: string) => {
   return api
-    .post('/auth/register', {
+      .post('/auth/register', {
       username,
       password,
       email,
@@ -86,3 +87,9 @@ export const logout = () => {
     .then(() => true)
     .catch(handleRequestError)
 }
+
+export const debouncedFunction = debounce(myFunction, 500);
+
+const debouncedGreet = debounce((name) => {
+  greet(name);
+}, 500);
