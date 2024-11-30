@@ -72,6 +72,14 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
+    'no-useless-constructor': 'off',
+    '@typescript-eslint/no-useless-constructor': 'error',
+    'no-empty-function': 'off',
+    '@typescript-eslint/no-empty-function': 'error',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
   },
   overrides: [
     {
