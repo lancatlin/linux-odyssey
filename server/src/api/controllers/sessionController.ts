@@ -67,7 +67,7 @@ export const getSessionById = asyncHandler(
       res.status(404).json({ message: 'Session not found.' })
       return
     }
-
+    console.log("gkwrlngklgwrklg"); 
     res.json(sessionDetail(session))
   }
 )

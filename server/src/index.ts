@@ -45,7 +45,6 @@ async function main() {
     return
   }
   expiryRemovalScheduler()
-
   const file = await fs.readFile('./swagger.yaml', 'utf8')
   const swaggerDocument = YAML.parse(file)
 

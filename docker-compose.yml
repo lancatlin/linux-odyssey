@@ -19,7 +19,7 @@ services:
       dockerfile: ./quests/Dockerfile
     extra_hosts:
       - 'host.docker.internal:host-gateway'
-
+ 
 networks:
   internal:
   players:

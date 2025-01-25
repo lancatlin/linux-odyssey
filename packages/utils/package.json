@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc -w"
+    "dev": "tsc -w", 
+    "watch": "tsc -b --watch"
   }
 }
