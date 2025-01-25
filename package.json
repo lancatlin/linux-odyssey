@@ -14,7 +14,7 @@
   "scripts": {
     "app": "yarn workspace app dev",
     "build": "yarn workspace server build && yarn workspace app build && yarn workspace analytics build",
-    "dev": "concurrently -n \"App,Server\" -c \"bgBlue.bold,bgGreen.bold\" \"yarn workspace app dev\" \"yarn workspace server dev\"",
+    "dev": "concurrently -n \"App,Server,Packages\" -c \"bgBlue.bold,bgGreen.bold,bgYellow\" \"yarn workspace app dev\" \"yarn workspace server dev\" \"yarn watch:packages\"",
     "server": "yarn workspace server dev",
     "cli": "yarn workspace client start",
     "lint": "eslint .",
@@ -25,7 +25,8 @@
     "analytics": "yarn workspace analytics dev",
     "setup": "yarn workspace server setup",
     "clean": "yarn workspace server clean",
-    "build:quests": "yarn workspace server build:quests"
+    "build:quests": "yarn workspace server build:quests", 
+    "watch:packages": "yarn workspace @linux-odyssey/utils watch && yarn workspace @linux-odyssey/models watch && yarn workspace @linux-odyssey/file-graph watch && yarn workspace @linux-odyssey/constants watch"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",

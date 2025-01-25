@@ -9,6 +9,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
-    "test": "yarn build && jest"
+    "test": "yarn build && jest", 
+    "watch": "tsc -b --watch"
   }
 }

@@ -8,7 +8,8 @@
   "exports": "./dist/index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc -w"
+    "dev": "tsc -w", 
+    "watch": "tsc -b --watch"
   },
   "dependencies": {
     "@types/mongoose": "^5.11.97",
