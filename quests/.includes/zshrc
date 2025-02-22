@@ -1,25 +1,34 @@
 PROMPT='%F{2}%n%f:%F{6}%~%f $ '
 unsetopt CASE_GLOB
 setopt CHASE_LINKS
-emulate bash
+# emulate bash
 
 set +o prompt_cr
 
 preexec() {
     export CMD_START_TIME=$(date +%s%N)      # capture start time
-    export CMD_NAME=$1                   # capture command
+    export CMD_NAME="$1"                   # capture command
 
-    # A list of interactive commands
-    interactive_commands=("vim" "nano" "top" "ssh" "less" "zsh" "bash")
+    # # A list of interactive commands
+    # readlink /proc/$PPID/exe
+    exec >&1 >/tmp/cmd.out 2>&2 2>/tmp/cmd.error
+    # interactive_commands=("vim" "nano" "top" "ssh" "less" "zsh" "bash" "script")
+    # # if [[ $CMD_EXECUTED = 1 ]]; then
+    # #     export CMD_EXECUTED=0
+    # #     return
+    # # fi
 
-    # Check if the command is in the list of interactive commands
-    if [[ " ${interactive_commands[@]} " =~ " $1 " ]]; then
-        # If it is, just execute it normally
-        exec
-    else
-        # If it's not, execute it and redirect its output to a file
-        exec > >(tee /tmp/cmd.out) 2> >(tee /tmp/cmd.error >&2)
-    fi
+    # # Check if the command is in the list of interactive commands
+    # if [[ " ${interactive_commands[@]} " =~ " $1 " ]]; then
+    #     # If it is, just execute it normally
+    #     # exec
+    #     return
+    # else
+    #     # If it's not, execute it and redirect its output to a file
+    #     # exec > >(tee /tmp/cmd.out) 2> >(tee /tmp/cmd.error >&2)
+    #     export CMD_EXECUTED=1
+    #     script -O /tmp/cmd.out -c "$*"
+    # fi
 }
 
 precmd() {
@@ -29,7 +38,8 @@ precmd() {
     export CMD_ERROR_FILE=/tmp/cmd.error
 
     # Now run your Node.js script with the result as an argument
-    node /usr/local/lib/container/cli.js; rm /tmp/cmd.out /tmp/cmd.error 2>/dev/null
+    node /usr/local/lib/container/cli.js
+    # rm /tmp/cmd.out /tmp/cmd.error 2>/dev/null
 
     # Reset variables
     unset CMD_START_TIME
@@ -38,5 +48,6 @@ precmd() {
     unset CMD_OUTPUT_FILE
     unset CMD_ERROR_FILE
     unset CMD_NAME
+    export CMD_EXECUTED=0
 }
 
